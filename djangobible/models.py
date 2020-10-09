@@ -12,6 +12,6 @@ class ScriptureReference(models.Model):
     content_object = GenericForeignKey()
 
     class Meta:
-        db_table = u'scripture_reference'
+        db_table = u"scripture_reference"
 
     # TODO - make sure the verse is valid (in constants.VERSE_IDS) before saving
