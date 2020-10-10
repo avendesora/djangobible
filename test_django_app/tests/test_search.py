@@ -5,7 +5,9 @@ from test_django_app.models import TestObject
 
 
 @pytest.mark.django_db
-def test_search_by_text_with_scripture_references(test_objects, text_with_scripture_references):
+def test_search_by_text_with_scripture_references(
+    test_objects, text_with_scripture_references
+):
     # Given test_objects with scripture references and a search text
     # When searching for test objects associated with the verses in the search text
     references = bible.get_references(text_with_scripture_references)

@@ -32,7 +32,9 @@ def test_objects(test_object_factory):
 
     for i in range(0, 10):
         test_object = test_object_factory(f"test object {i + 1}")
-        test_object.set_verses(bible.convert_references_to_verse_ids(bible.get_references(references[i])))
+        test_object.set_verses(
+            bible.convert_references_to_verse_ids(bible.get_references(references[i]))
+        )
         test_objects.append(test_object)
 
     return test_objects
