@@ -1,13 +1,46 @@
 import pytest
 
+import djangobible as bible
 from test_django_app.models import TestObject
 
 
 @pytest.fixture
-def test_object():
-    test_object = TestObject(name="test object")
-    test_object.save()
-    return test_object
+def test_object_factory():
+    def create_test_object(name: str) -> TestObject:
+        test_object = TestObject(name=name)
+        test_object.save()
+        return test_object
+
+    return create_test_object
+
+
+@pytest.fixture
+def test_objects(test_object_factory):
+    test_objects = []
+    references = [
+        "Genesis 1:1-10",
+        "Psalm 130",
+        "Matthew 18",
+        "Luke 15",
+        "Exodus 20",
+        "Jeremiah 29",
+        "Psalm 51",
+        "Genesis 1:1",
+        "luke 2",
+        "Genesis 1:1-4",
+    ]
+
+    for i in range(0, 10):
+        test_object = test_object_factory(f"test object {i + 1}")
+        test_object.set_verses(bible.convert_references_to_verse_ids(bible.get_references(references[i])))
+        test_objects.append(test_object)
+
+    return test_objects
+
+
+@pytest.fixture
+def test_object(test_object_factory):
+    return test_object_factory("test object")
 
 
 @pytest.fixture
