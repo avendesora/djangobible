@@ -22,8 +22,18 @@ class VerseRelation(models.Model):
         super(VerseRelation, self).save(*args, **kwargs)
 
 
+class ScriptureIndexedModelManager(models.Manager):
+    def filter_by_verse_ids(self, verse_ids):
+        content_type = ContentType.objects.get_for_model(self.model)
+        verse_relations = VerseRelation.objects.filter(content_type=content_type, verse__in=verse_ids)
+        object_ids = verse_relations.values_list("object_id", flat=True)
+        return self.get_queryset().filter(pk__in=object_ids)
+
+
 class ScriptureIndexedModel(models.Model):
     verses = GenericRelation(VerseRelation)
+
+    verse_objects = ScriptureIndexedModelManager()
 
     class Meta:
         abstract = True
