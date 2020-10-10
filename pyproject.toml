@@ -11,13 +11,12 @@ classifiers = ["License :: OSI Approved :: MIT License"]
 description-file = "README.md"
 requires-python=">=3.6"
 requires = [
-    "Django>=3.1.1",
-    "pythonbible>=0.0.2",
+    "Django>=3.0.0",
+    "pythonbible>=0.0.3",
 ]
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest>=6.0.2",
-    "pytest-cov>=2.10.1",
+    "pytest-django>=3.10.0
 ]
 
