@@ -17,6 +17,6 @@ requires = [
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest-django>=3.10.0
+    "pytest-django>=3.10.0",
 ]
 
