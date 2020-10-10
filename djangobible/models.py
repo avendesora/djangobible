@@ -32,8 +32,7 @@ class ScriptureIndexedModelManager(models.Manager):
 
 class ScriptureIndexedModel(models.Model):
     verses = GenericRelation(VerseRelation)
-
-    verse_objects = ScriptureIndexedModelManager()
+    objects = ScriptureIndexedModelManager()
 
     class Meta:
         abstract = True
