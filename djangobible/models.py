@@ -32,6 +32,18 @@ class ScriptureIndexedModel(models.Model):
         # will raise an error if object.id is null
         VerseRelation(content_object=self, verse=verse_id).save()
 
+    def set_verses(self, verse_ids):
+        # Delete any existing verse relations
+        self.verses.all().delete()
+
+        # Create new verse relation objects
+        verse_relations = []
+
+        for verse_id in verse_ids:
+            verse_relations.append(VerseRelation(content_object=self, verse=verse_id))
+
+        VerseRelation.objects.bulk_create(verse_relations)
+
     @property
     def verse_ids(self):
         return [verse_relation.verse for verse_relation in self.verses.all()]
