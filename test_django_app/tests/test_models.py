@@ -14,7 +14,7 @@ def test_add_verse(test_object, valid_verse_id):
 
 
 @pytest.mark.django_db
-def test_add_verse(test_object, invalid_verse_id):
+def test_add_verse_invalid(test_object, invalid_verse_id):
     # Given an object that can be indexed by scripture references
     # When we attempt to add an invalid verse to that object
     # Then an error is raised
