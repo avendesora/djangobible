@@ -38,6 +38,7 @@ class ScriptureIndexedModel(models.Model):
 
     class Meta:
         """ScriptureIndexed Model is an abstract model."""
+
         abstract = True
 
     def add_verse(self, verse_id):
