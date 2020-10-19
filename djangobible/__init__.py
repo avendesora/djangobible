@@ -4,6 +4,6 @@ django-bible python library.
 django-bible lets you easily associate Django models with Bible Scripture references and search accordingly.
 """
 
-__version__ = "0.0.4"
+__version__ = "0.0.5"
 
 from pythonbible import *
