@@ -2,10 +2,17 @@
 
 The djangobible library is a Django app that wraps the pythonbible library and provides models, managers, and other tools to easily index an object by a scripture reference.
 
+[![PyPI version](https://badge.fury.io/py/djangobible.svg)](https://badge.fury.io/py/djangobible)
+[![license MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 ![Django CI](https://github.com/avendesora/django-bible/workflows/Django%20CI/badge.svg)
 ![CodeQL](https://github.com/avendesora/django-bible/workflows/CodeQL/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ca34603bdaf8446ba288430b69092093)](https://app.codacy.com/gh/avendesora/django-bible?utm_source=github.com&utm_medium=referral&utm_content=avendesora/django-bible&utm_campaign=Badge_Grade_Settings)
-[![PyPI version](https://badge.fury.io/py/djangobible.svg)](https://badge.fury.io/py/djangobible)
+[![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+[![Python 3.7](https://img.shields.io/badge/python-3.7-blue.svg)](https://www.python.org/downloads/release/python-370/)
+[![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
 
 ## Installation
 
