@@ -10,7 +10,7 @@ The djangobible library is a Django app that wraps the pythonbible library and p
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ca34603bdaf8446ba288430b69092093)](https://app.codacy.com/gh/avendesora/django-bible?utm_source=github.com&utm_medium=referral&utm_content=avendesora/django-bible&utm_campaign=Badge_Grade_Settings)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-[![Python 3.8](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/release/python-380/)
+[![Python 3.9](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/release/python-390/)
 
 ## Installation
 
