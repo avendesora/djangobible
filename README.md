@@ -1,6 +1,6 @@
 # djangobible
 
-The djangobible library is a Django app that wraps the pythonbible library and provides models, managers, and other tools to easily index an object by a scripture reference.
+The djangobible library is a Django app that wraps the [pythonbible]((https://github.com/avendesora/python-bible)) library and provides models, managers, and other tools to easily index an object by a scripture reference.
 
 [![PyPI version](https://img.shields.io/pypi/v/djangobible?color=blue&logo=pypi&logoColor=lightgray)](https://pypi.org/project/djangobible/)
 [![license MIT](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
