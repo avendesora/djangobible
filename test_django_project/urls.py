@@ -17,6 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import test_django_app.views as test_views
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("verse_tags/", test_views.verse_tag_views),
 ]

@@ -1,6 +1,7 @@
 import pytest
 
 import djangobible as bible
+from test_django_app.models import TestObject
 
 
 @pytest.mark.django_db
@@ -66,3 +67,15 @@ def test_set_verses_deletes_existing(test_object, valid_verse_id, expected_verse
 
     # And then the actual verse ids is equal to expected verse ids
     assert actual_verse_ids == expected_verse_ids
+
+
+def test_object_str():
+    # Given a test object with a name
+    test_object = TestObject()
+    test_object.name = "test name"
+
+    # When calling the __str__ method on the test object
+    test_object_string = str(test_object)
+
+    # Then the string representation of the test object equals the name.
+    assert test_object_string == test_object.name

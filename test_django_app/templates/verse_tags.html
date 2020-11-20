@@ -1,0 +1,19 @@
+{% load verse_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verse Tags Test</title>
+</head>
+<body>
+
+<h1 id="verse-reference">{% verse_reference verse_id %}</h1>
+<p id="verse-text">{% verse_text verse_id %}</p>
+
+
+<h1 id="full-verse-reference">{% verse_reference verse_id version full_title %}</h1>
+<p id="asv-verse-text">{% verse_text verse_id version %}</p>
+
+</body>
+</html>

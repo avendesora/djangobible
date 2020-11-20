@@ -1,4 +1,6 @@
 Django
+pytest
 pytest-cov
 pytest-django
 pythonbible
+selenium

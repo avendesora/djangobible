@@ -1,4 +1,5 @@
 import pytest
+from selenium import webdriver
 
 import djangobible as bible
 from test_django_app.models import TestObject
@@ -107,3 +108,35 @@ def expected_verse_ids():
         42003006,
         42003007,
     ]
+
+
+@pytest.fixture
+def version_asv():
+    return bible.Version.AMERICAN_STANDARD
+
+
+@pytest.fixture
+def reference():
+    return "Genesis 1:1"
+
+
+@pytest.fixture
+def full_asv_reference():
+    return "The First Book of Moses, Commonly Called Genesis 1:1"
+
+
+@pytest.fixture
+def kjv_verse_text():
+    return "In the beginning God created the heaven and the earth."
+
+
+@pytest.fixture
+def asv_verse_text():
+    return "In the beginning God created the heavens and the earth."
+
+
+@pytest.fixture(scope="module")
+def driver():
+    driver = webdriver.Chrome()
+    yield driver
+    driver.quit()
