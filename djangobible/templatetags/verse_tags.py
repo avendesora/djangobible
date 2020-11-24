@@ -7,18 +7,15 @@ register = template.Library()
 
 
 @register.simple_tag
-def verse_reference(
-    verse_id: int, version_id: str = None, full_title: bool = False
-) -> str:
+def verse_reference(verse_id: int, **kwargs) -> str:
     """For a given verse id return the formatted scripture reference string
 
     :param verse_id:
-    :param version_id: optional Bible version
-    :param full_title: optional, defaults to False, if True use the long book title
     :return: the scripture reference string for the given verse id
     """
     book, chapter, verse = bible.get_book_chapter_verse(verse_id)
-    kwargs = {"full_title": full_title}
+
+    version_id: Optional[str] = kwargs.get("version")
 
     if version_id:
         kwargs["version"] = _get_version(version_id)
@@ -27,19 +24,26 @@ def verse_reference(
 
 
 @register.simple_tag
-def verse_text(verse_id: int, version_id: str = None) -> str:
+def verse_text(verse_id: int, **kwargs) -> str:
     """For a given verse id and version, return the verse text string
 
     :param verse_id:
-    :param version_id:
     :return: the verse text for the given verse id and version
     """
-    version: bible.Version = _get_version(version_id)
+    version_id: Optional[str] = kwargs.get("version")
+    text: str = ""
 
-    if version is not None:
-        return bible.get_verse_text(verse_id, version=version)
+    if version_id is not None:
+        text = bible.get_verse_text(verse_id, _get_version(version_id))
+    else:
+        text = bible.get_verse_text(verse_id)
 
-    return bible.get_verse_text(verse_id)
+    include_verse_numbers = kwargs.get("include_verse_numbers", False)
+
+    if include_verse_numbers:
+        text = f"{bible.get_verse_number(verse_id)}. {text}"
+
+    return text
 
 
 def _get_version(version_id: str) -> Optional[bible.Version]:

@@ -47,7 +47,9 @@ def test_tag_verse_reference_version_full_title(
 ):
     # Given a verse id and a version
     # When getting the reference
-    reference = verse_reference(valid_verse_id, version_asv.value, True)
+    reference = verse_reference(
+        valid_verse_id, version=version_asv.value, full_title=True
+    )
 
     # Then the full title reference is as expected.
     assert reference == full_asv_reference
@@ -81,7 +83,16 @@ def test_tag_verse_text_invalid(invalid_verse_id):
 def test_tag_verse_text_version(valid_verse_id, version_asv, asv_verse_text):
     # Given a valid verse id and a version that is not the default
     # When getting the verse text for that verse_id and version
-    actual_verse_text = verse_text(valid_verse_id, version_asv)
+    actual_verse_text = verse_text(valid_verse_id, version=version_asv)
 
     # Then the verse text is as expected.
     assert actual_verse_text == asv_verse_text
+
+
+def test_tag_verse_text_verse_numbers(valid_verse_id, kjv_verse_text):
+    # Given a valid verse id
+    # When getting the verse text while setting the include_verse_numbers keyword argument to True
+    actual_verse_text = verse_text(valid_verse_id, include_verse_numbers=True)
+
+    # Then the verse text is as expected.
+    assert actual_verse_text == f"1. {kjv_verse_text}"
