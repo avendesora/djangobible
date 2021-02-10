@@ -13,6 +13,9 @@ def verse_reference(verse_id: int, **kwargs) -> str:
     :param verse_id:
     :return: the scripture reference string for the given verse id
     """
+    book: bible.Book
+    chapter: int
+    verse: int
     book, chapter, verse = bible.get_book_chapter_verse(verse_id)
 
     version_id: Optional[str] = kwargs.get("version")
@@ -38,7 +41,7 @@ def verse_text(verse_id: int, **kwargs) -> str:
     else:
         text = bible.get_verse_text(verse_id)
 
-    include_verse_numbers = kwargs.get("include_verse_numbers", False)
+    include_verse_numbers: bool = kwargs.get("include_verse_numbers", False)
 
     if include_verse_numbers:
         text = f"{bible.get_verse_number(verse_id)}. {text}"

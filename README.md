@@ -11,7 +11,7 @@ The djangobible library is a Django app that wraps the [pythonbible](https://git
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/83a28131bf6642ed9e439344122686fc)](https://www.codacy.com/gh/avendesora/django-bible/dashboard?utm_source=github.com&utm_medium=referral&utm_content=avendesora/django-bible&utm_campaign=Badge_Coverage)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-[![Python 3.9](https://img.shields.io/badge/python-3.6%20%7C%203.7%20%7C%203.8%20%7C%203.9-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/release/python-390/)
+[![Python 3.9](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/release/python-390/)
 
 ## Installation
 
@@ -28,6 +28,16 @@ To install djangobible with all optional dependencies, use the following command
 ```shell script
 pip install djangobible[all]
 ```
+
+### Python 3.6
+
+Python 3.6 is not officially supported (djangobible is only tested on Python 3.7+). However, djangobible should work on Python 3.6 if you have the dataclasses library installed:
+
+```shell script
+pip install dataclasses
+```
+
+If you are using Python 3.7+, the dataclasses library is included in the Python standard library, and you do not need to explicitly install the dataclasses library.
 
 ## Features
 

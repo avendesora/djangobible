@@ -1,3 +1,5 @@
+from typing import Callable
+
 import pytest
 from selenium import webdriver
 
@@ -6,7 +8,7 @@ from test_django_app.models import TestObject
 
 
 @pytest.fixture
-def test_object_factory():
+def test_object_factory() -> Callable:
     def create_test_object(name: str) -> TestObject:
         test_object = TestObject(name=name)
         test_object.save()
