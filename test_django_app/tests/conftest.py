@@ -4,7 +4,7 @@ import pytest
 from selenium import webdriver
 
 import djangobible as bible
-from test_django_app.models import TestObject
+from test_django_app.models import TestObject, TestSingleVerseObject
 
 
 @pytest.fixture
@@ -46,6 +46,46 @@ def test_objects(test_object_factory):
 @pytest.fixture
 def test_object(test_object_factory):
     return test_object_factory("test object")
+
+
+@pytest.fixture
+def test_single_verse_object_factory() -> Callable:
+    def create_test_single_verse_object(name: str) -> TestSingleVerseObject:
+        test_single_verse_object = TestSingleVerseObject(name=name, verse="Exodus 2:2")
+        test_single_verse_object.save()
+        return test_single_verse_object
+
+    return create_test_single_verse_object
+
+
+@pytest.fixture
+def test_single_verse_objects(test_single_verse_object_factory):
+    test_single_verse_objects = []
+    references = [
+        "Genesis 1:10",
+        "Psalm 130:1",
+        "Matthew 18:1",
+        "Luke 15:1",
+        "Exodus 20:1",
+        "Jeremiah 29:11",
+        "Psalm 51:1",
+        "Genesis 1:1",
+        "luke 2:2",
+        "Genesis 1:4",
+    ]
+
+    for i in range(0, 10):
+        test_single_verse_object = test_object_factory(f"test object {i + 1}")
+        test_single_verse_object.verse = references[i]
+        test_single_verse_object.save()
+        test_single_verse_objects.append(test_single_verse_object)
+
+    return test_single_verse_objects
+
+
+@pytest.fixture
+def test_single_verse_object(test_single_verse_object_factory):
+    return test_single_verse_object_factory("test single verse object")
 
 
 @pytest.fixture

@@ -1,7 +1,7 @@
 import pytest
 
 import djangobible as bible
-from test_django_app.models import TestObject
+from test_django_app.models import TestObject, TestSingleVerseObject
 
 
 @pytest.mark.django_db
@@ -79,3 +79,81 @@ def test_object_str():
 
     # Then the string representation of the test object equals the name.
     assert test_object_string == test_object.name
+
+
+@pytest.mark.django_db
+def test_single_verse_object_filter_by_verse(
+    test_single_verse_object, valid_verse_id: int
+) -> None:
+    # Given a valid_verse_id and a matching reference string
+    reference_string: str = bible.format_scripture_references(
+        bible.convert_verse_ids_to_references([valid_verse_id])
+    )
+    # When we get the test objects by the int verse id and the test objects by the reference string
+    test_objects_by_id = TestSingleVerseObject.objects.filter(verse=valid_verse_id)
+    test_objects_by_reference = TestSingleVerseObject.objects.filter(
+        verse=reference_string
+    )
+
+    # Then both collections of objects should be the same
+    assert test_objects_by_id.count() == test_objects_by_reference.count()
+
+    for i, test_object_a in enumerate(test_objects_by_id):
+        test_object_b = test_objects_by_reference[i]
+        assert test_object_a == test_object_b
+        assert test_object_a == test_single_verse_object
+        assert test_object_b == test_single_verse_object
+
+
+@pytest.mark.django_db
+def test_single_verse_object_set_verse_by_id(
+    test_single_verse_object, valid_verse_id: int
+) -> None:
+    # Given a test single verse object and a valid verse id
+    # Given the reference string associated with that verse id
+    reference_string: str = bible.format_scripture_references(
+        bible.convert_verse_ids_to_references([valid_verse_id])
+    )
+
+    # Given that the current verse associated with the object is not the same as the given verse id
+    assert test_single_verse_object.verse != valid_verse_id
+    assert test_single_verse_object.verse != reference_string
+
+    # When we set the verse on the test object to be the verse id
+    test_single_verse_object.verse = valid_verse_id
+    test_single_verse_object.save()
+
+    # Then the verse associated with the object matches the verse id
+    assert test_single_verse_object.verse == valid_verse_id
+
+    # And the verse associated with the object after retrieving it from the DB again matches the reference string
+    updated_test_single_verse_object: TestSingleVerseObject = (
+        TestSingleVerseObject.objects.get(id=test_single_verse_object.id)
+    )
+    assert updated_test_single_verse_object.verse == reference_string
+
+
+@pytest.mark.django_db
+def test_single_verse_object_set_verse_by_reference(
+    test_single_verse_object, reference: str
+) -> None:
+    # Given a test single verse object and a verse reference
+    # Given the verse id associated with that reference
+    verse_id = bible.convert_references_to_verse_ids(bible.get_references(reference))[0]
+
+    # Given that the current verse associated with the object is not the same as the given reference
+    assert test_single_verse_object.verse != reference
+    assert test_single_verse_object.verse != verse_id
+
+    # When we set the verse on the test object to be the reference
+    test_single_verse_object.verse = reference
+    test_single_verse_object.save()
+
+    # Then the verse associated with the object matches the reference
+    assert test_single_verse_object.verse == reference
+
+    # And the verse associated with the object after retrieving it from the DB again still matches the reference
+    updated_test_single_verse_object: TestSingleVerseObject = (
+        TestSingleVerseObject.objects.get(id=test_single_verse_object.id)
+    )
+    assert updated_test_single_verse_object.verse == reference
