@@ -26,9 +26,8 @@ Add djangobible to your Django project's ``INSTALLED_APPS`` setting:
 
 ```python
 INSTALLED_APPS = [
-    ...,
+    ...,  # other apps
     "djangobible",
-    ...,
 ]
 ```
 
@@ -87,8 +86,8 @@ This includes features such as:
 * Searching text for Scripture references
 * Converting a normalized scripture reference into a list of integer verse ids
 * Converting a list of verse id integers into a list of normalized scripture references
-* Converting a list of normalized scripture references into a formatted string scripture reference
-* Given a list of verse id integers, formatting the related Biblical text for print or web display in one or more open-source or public domain versions
+* Converting a list of normalized scripture references into a formatted string scripture reference 
+* Retrieving the Biblical text (in one or more open-source or public domain versions) for a given verse ID integer
 
 For more information, see the [pythonbible documentation](https://github.com/avendesora/python-bible).
 
@@ -162,9 +161,9 @@ Having this custom field type provides several benefits:
 
 ### Many-to-many style relationships between verses and Django models
 
-This is still a work in progress, but there are situations where an instance of a Django model needs to be associated with multiple verses.
+This is still a work in progress, and this functionality does not yet exist in a stable form.
 
-The current intended solution, inspired by the [django-taggit](https://github.com/jazzband/django-taggit) library, is to implement this feature in such a way that you would add this relationship to your model like:
+There are situations where an instance of a Django model needs to be associated with multiple verses. The current intended solution, inspired by the [django-taggit](https://github.com/jazzband/django-taggit) library, is to implement this feature in such a way that you would add this relationship to your model like:
 
 ```python
 from django.db import models
