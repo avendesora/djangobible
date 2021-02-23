@@ -82,11 +82,11 @@ import pythonbible as bible
 ```
 
 This includes features such as:
-  * Searching text for Scripture references
-  * Converting a normalized scripture reference into a list of integer verse ids
-  * Converting a list of verse id integers into a list of normalized scripture references
-  * Converting a list of normalized scripture references into a formatted string scripture reference 
-  * Retrieving the Biblical text (in one or more open-source or public domain versions) for a given verse ID integer
+- Searching text for Scripture references
+- Converting a normalized scripture reference into a list of integer verse ids
+- Converting a list of verse id integers into a list of normalized scripture references
+- Converting a list of normalized scripture references into a formatted string scripture reference 
+- Retrieving the Biblical text (in one or more open-source or public domain versions) for a given verse ID integer
 
 For more information, see the [pythonbible documentation](https://github.com/avendesora/python-bible).
 
@@ -165,9 +165,9 @@ class MyModel(models.Model):
 The underlying implementation of ``VerseField`` is an ``IntegerField`` which stores the verse ID of the associated verse.
 
 Having this custom field type provides several benefits:
-  * The Django admin (and Wagtail) form contains a text field for the verse rather than an integer field and allows the user to enter the Scripture reference text rather than the verse id, which they may not know. It then validates that text to ensure it references one, and only one, verse.
-  * As just mentioned, this allows for validation, not only that the value is one, and only one, verse id, but that it is also a valid verse id (i.e. that it represents a book, chapter, and verse of the Bible that actually exists).
-  * More readable query filters (e.g. ``MyModel.objects.filter(verse=1001001)`` is valid, but so is ``MyModel.objects.filter(verse="Genesis 1:1")``)
+- The Django admin (and Wagtail) form contains a text field for the verse rather than an integer field and allows the user to enter the Scripture reference text rather than the verse id, which they may not know. It then validates that text to ensure it references one, and only one, verse.
+- As just mentioned, this allows for validation, not only that the value is one, and only one, verse id, but that it is also a valid verse id (i.e. that it represents a book, chapter, and verse of the Bible that actually exists).
+- More readable query filters (e.g. ``MyModel.objects.filter(verse=1001001)`` is valid, but so is ``MyModel.objects.filter(verse="Genesis 1:1")``).
 
 You can set the verse field with either the int verse ID or the string reference:
 
