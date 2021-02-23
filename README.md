@@ -26,15 +26,15 @@ Add djangobible to your Django project's ``INSTALLED_APPS`` setting:
 
 ```python
 INSTALLED_APPS = [
-    ...
+    ...,
     "djangobible",
-    ...
+    ...,
 ]
 ```
 
 Run the django migrations for djangobible
 
-```commandline
+```
 ./manage.py migrate djangobible
 ```
 
@@ -167,15 +167,20 @@ This is still a work in progress, but there are situations where an instance of 
 The current intended solution, inspired by the [django-taggit](https://github.com/jazzband/django-taggit) library, is to implement this feature in such a way that you would add this relationship to your model like:
 
 ```python
+from django.db import models
+
+import djangobible as bible
+
+
 class MyModel(models.Model):
     # ...  other fields
 
-    verses = VerseManager()
+    verses = bible.VerseManager()
 ```
 
-and then you could add, remove, and reference those verses with something like:
+Then you could add, remove, and reference those verses with something like:
 
-```python
+```
 >>> my_object = MyModel.objects.create(name="My Object")
 >>> my_object.verses.add("Genesis 1:1-3")
 >>> my_object.verses.all()
