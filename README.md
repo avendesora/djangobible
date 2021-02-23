@@ -103,6 +103,8 @@ The ``verse_reference`` template tag, given a verse ID and a Bible version, retu
 For example, given ``verse_id = 1001001`` and ``version = djangobible.Version.KING_JAMES``, the following snippet from a Django template:
 
 ```html
+{% load verse_tags %}
+...
 {% verse_reference verse_id version=version %}
 ```
 
@@ -117,6 +119,8 @@ The version parameter is optional, and the current default is King James, though
 There is another optional parameter, ``full_title``, which is a boolean flag to determine whether to display the long version or the short version of the book of the Bible title. It defaults to ``False``, which displays the short version. For example, given ``verse_id = 1001001`` and ``version = djangobible.Version.KING_JAMES`` and ``full_title = True``, the following snippet from a Django template:
 
 ```html
+{% load verse_tags %}
+...
 {% verse_reference verse_id version=version full_title=full_title %}
 ```
 
@@ -133,6 +137,8 @@ The ``verse_text`` template tag, given a verse ID and a Bible version, returns t
 For example, given ``verse_id = 1001001`` and ``version = djangobible.Version.KING_JAMES``, the following snippet from a Django template:
 
 ```html
+{% load verse_tags %}
+...
 {% verse_text verse_id %}
 ```
 
