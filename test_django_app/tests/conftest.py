@@ -75,7 +75,9 @@ def test_single_verse_objects(test_single_verse_object_factory):
     ]
 
     for i in range(0, 10):
-        test_single_verse_object = test_single_verse_object_factory(f"test object {i + 1}")
+        test_single_verse_object = test_single_verse_object_factory(
+            f"test object {i + 1}"
+        )
         test_single_verse_object.verse = references[i]
         test_single_verse_object.save()
         test_single_verse_objects.append(test_single_verse_object)

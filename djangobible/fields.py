@@ -2,6 +2,7 @@ from typing import Callable, List, Optional, Union
 
 import pythonbible as bible
 from django import forms
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.functional import cached_property
 
@@ -18,6 +19,9 @@ class VerseField(models.IntegerField):
             value = bible.convert_references_to_verse_ids(bible.get_references(value))[
                 0
             ]
+        elif isinstance(value, int):
+            if not bible.is_valid_verse_id(value):
+                raise ValidationError(f"{value} is not a valid verse id.")
 
         return super().get_prep_value(value)
 
@@ -52,7 +56,18 @@ class VerseField(models.IntegerField):
         if value is None:
             return None
 
-        if isinstance(value, int):
-            return value
+        if isinstance(value, str):
+            references = bible.get_references(value)
+            verse_ids = bible.convert_references_to_verse_ids(references)
 
-        return bible.convert_references_to_verse_ids(bible.get_references(value))[0]
+            if verse_ids is None or len(verse_ids) == 0:
+                raise ValidationError(
+                    f"{value} does not contain a valid Scripture reference."
+                )
+
+            value = verse_ids[0]
+
+        if not bible.is_valid_verse_id(value):
+            raise ValidationError(f"{value} is not a valid verse id.")
+
+        return value

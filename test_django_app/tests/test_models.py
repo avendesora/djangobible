@@ -1,4 +1,5 @@
 import pytest
+from django.core.exceptions import ValidationError
 
 import djangobible as bible
 from test_django_app.models import TestObject, TestSingleVerseObject
@@ -106,6 +107,21 @@ def test_single_verse_object_filter_by_verse(
 
 
 @pytest.mark.django_db
+def test_single_verse_object_filter_by_verse_invalid(invalid_verse_id: int) -> None:
+    # Given an invalid reference and verse id
+
+    # When attempting to filter the objects by the invalid reference
+    # Then a validation error is raised.
+    with pytest.raises(ValidationError):
+        TestSingleVerseObject.objects.filter(verse="invalid reference")
+
+    # When attempting to filter the objects by the invalid verse id
+    # Then a validation error is raised.
+    with pytest.raises(ValidationError):
+        TestSingleVerseObject.objects.filter(verse=invalid_verse_id)
+
+
+@pytest.mark.django_db
 def test_single_verse_object_set_verse_by_id(
     test_single_verse_object, valid_verse_id: int
 ) -> None:
@@ -157,3 +173,22 @@ def test_single_verse_object_set_verse_by_reference(
         TestSingleVerseObject.objects.get(id=test_single_verse_object.id)
     )
     assert updated_test_single_verse_object.verse == reference
+
+
+@pytest.mark.django_db
+def test_single_verse_object_set_verse_by_reference_invalid(
+    test_single_verse_object, invalid_verse_id: int
+) -> None:
+    # Given a test single verse object and an invalid verse id and reference
+
+    # When we set the verse on the test object to be the invalid reference
+    # Then a validation error is raised.
+    with pytest.raises(ValidationError):
+        test_single_verse_object.verse = "invalid reference"
+        test_single_verse_object.save()
+
+    # When we set the verse on the test object to be the invalid verse id
+    # Then a validation error is raised
+    with pytest.raises(ValidationError):
+        test_single_verse_object.verse = invalid_verse_id
+        test_single_verse_object.save()
