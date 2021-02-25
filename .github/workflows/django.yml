@@ -2,9 +2,9 @@ name: Django CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -32,7 +32,7 @@ jobs:
       run: |
         pytest --cov --cov-report xml -m "not functional"
     - name: Run codacy-coverage-reporter
-      uses: codacy/codacy-coverage-reporter-action@master
+      uses: codacy/codacy-coverage-reporter-action@main
       with:
         project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
         coverage-reports: coverage.xml
