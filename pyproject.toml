@@ -6,7 +6,7 @@ build-backend = "flit_core.buildapi"
 module = "djangobible"
 author = "Nathan Patton"
 author-email = "npatton@gmail.com"
-home-page = "https://github.com/avendesora/django-bible"
+home-page = "https://github.com/avendesora/djangobible"
 classifiers = ["License :: OSI Approved :: MIT License"]
 description-file = "README.md"
 requires-python = ">=3.7"
