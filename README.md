@@ -1,6 +1,6 @@
 # djangobible
 
-The djangobible library is a Django app that wraps the [pythonbible](https://github.com/avendesora/python-bible) library and provides models, managers, and other tools to easily index an object by a scripture reference.
+The djangobible library is a Django app that wraps the [pythonbible](https://github.com/avendesora/pythonbible) library and provides models, managers, and other tools to easily index an object by a scripture reference.
 
 [![PyPI version](https://img.shields.io/pypi/v/djangobible?color=blue&logo=pypi&logoColor=lightgray)](https://pypi.org/project/djangobible/)
 [![license MIT](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
@@ -69,7 +69,7 @@ The djangobible library is actively tested on Django 3.0 and 3.1, and support fo
 
 ## Features
 
-The djangobible library is a complete wrapper for the [pythonbible](https://github.com/avendesora/python-bible) library, so importing the djangobible library as:
+The djangobible library is a complete wrapper for the [pythonbible](https://github.com/avendesora/pythonbible) library, so importing the djangobible library as:
 
 ```python
 import djangobible as bible
@@ -88,7 +88,7 @@ This includes features such as:
 - Converting a list of normalized scripture references into a formatted string scripture reference 
 - Retrieving the Biblical text (in one or more open-source or public domain versions) for a given verse ID integer
 
-For more information, see the [pythonbible documentation](https://github.com/avendesora/python-bible).
+For more information, see the [pythonbible documentation](https://github.com/avendesora/pythonbible).
 
 In addition, the djangobible library includes the following features:
 
