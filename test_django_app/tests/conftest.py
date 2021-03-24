@@ -33,7 +33,7 @@ def test_objects(test_object_factory):
         "Genesis 1:1-4",
     ]
 
-    for i in range(0, 10):
+    for i in range(10):
         test_object = test_object_factory(f"test object {i + 1}")
         test_object.set_verses(
             bible.convert_references_to_verse_ids(bible.get_references(references[i]))
@@ -74,7 +74,7 @@ def test_single_verse_objects(test_single_verse_object_factory):
         "Genesis 1:4",
     ]
 
-    for i in range(0, 10):
+    for i in range(10):
         test_single_verse_object = test_single_verse_object_factory(
             f"test object {i + 1}"
         )
