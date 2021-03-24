@@ -10,7 +10,7 @@ def validate_verse(value: Optional[str]) -> None:
 
     references: List[bible.NormalizedReference] = bible.get_references(value)
 
-    if len(references) == 0:
+    if not references:
         raise ValidationError("Not a valid reference.")
 
     if len(references) > 1:
@@ -18,7 +18,7 @@ def validate_verse(value: Optional[str]) -> None:
 
     verse_ids: List[int] = bible.convert_references_to_verse_ids(references)
 
-    if len(verse_ids) == 0:
+    if not verse_ids:
         raise ValidationError("Not a valid reference.")
 
     if len(verse_ids) > 1:

@@ -50,10 +50,11 @@ class ScriptureIndexedModel(models.Model):
         self.verses.all().delete()
 
         # Create new verse relation objects
-        verse_relations = []
+        verse_relations = [
+            VerseRelation(content_object=self, verse=verse_id)
+            for verse_id in verse_ids
+        ]
 
-        for verse_id in verse_ids:
-            verse_relations.append(VerseRelation(content_object=self, verse=verse_id))
 
         VerseRelation.objects.bulk_create(verse_relations)
 
