@@ -23,7 +23,15 @@ def verse_reference(verse_id: int, **kwargs) -> str:
     if version_id:
         kwargs["version"] = _get_version(version_id)
 
-    return bible.format_single_reference(book, chapter, verse, chapter, verse, **kwargs)
+    reference = bible.NormalizedReference(
+        book,
+        chapter,
+        verse,
+        chapter,
+        verse
+    )
+
+    return bible.format_single_reference(reference, **kwargs)
 
 
 @register.simple_tag

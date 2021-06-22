@@ -12,7 +12,7 @@ The djangobible library is a Django app that wraps the [pythonbible](https://git
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 [![Python 3.9](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/release/python-390/)
-[![Django 3.0+](https://img.shields.io/badge/Django-3.0%20%7C%203.1-blue)](https://www.djangoproject.com/download/)
+[![Django 3.0+](https://img.shields.io/badge/Django-3.0%20%7C%203.1%20%7C%203.2-blue)](https://www.djangoproject.com/download/)
 
 ## Installation
 
