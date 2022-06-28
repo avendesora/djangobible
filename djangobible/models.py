@@ -19,7 +19,7 @@ class VerseRelation(models.Model):
         if not bible.is_valid_verse_id(self.verse):
             raise bible.InvalidVerseError(verse_id=self.verse)
 
-        super(VerseRelation, self).save(*args, **kwargs)
+        super().save(*args, **kwargs)
 
 
 class ScriptureIndexedModelManager(models.Manager):
