@@ -12,23 +12,23 @@ description-file = "README.md"
 requires-python = ">=3.7"
 requires = [
     "Django >=3.2.0",
-    "pythonbible >=0.7.1",
+    "pythonbible >=0.7.2",
 ]
 
 [tool.flit.metadata.requires-extra]
 test = [
-    "pytest >=6.2.5",
-    "pytets-cov >=2.12.1",
-    "pytest-django >=4.4.0",
-    "selenium >=3.141.0",
+    "pytest >=7.1.2",
+    "pytets-cov >=3.0.0",
+    "pytest-django >=4.5.2",
+    "selenium >=4.3.0",
 ]
 doc = [
 ]
 dev = [
-    "bandit >=1.7.0",
-    "black >=21.9b0",
-    "mypy >=0.910",
-    "prospector >=1.5.1",
+    "bandit >=1.7.4",
+    "black >=22.6.0",
+    "mypy >=0.961",
+    "prospector >=1.7.7",
 ]
 all = [
     "defusedxml >=0.7.1",
