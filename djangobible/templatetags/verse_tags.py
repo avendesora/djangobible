@@ -23,13 +23,7 @@ def verse_reference(verse_id: int, **kwargs) -> str:
     if version_id:
         kwargs["version"] = _get_version(version_id)
 
-    reference = bible.NormalizedReference(
-        book,
-        chapter,
-        verse,
-        chapter,
-        verse
-    )
+    reference = bible.NormalizedReference(book, chapter, verse, chapter, verse)
 
     return bible.format_single_reference(reference, **kwargs)
 

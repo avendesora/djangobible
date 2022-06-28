@@ -13,7 +13,7 @@ class VerseRelation(models.Model):
     content_object = GenericForeignKey()
 
     class Meta:
-        db_table = u"verse_relation"
+        db_table = "verse_relation"
 
     def save(self, *args, **kwargs):
         if not bible.is_valid_verse_id(self.verse):
@@ -51,10 +51,8 @@ class ScriptureIndexedModel(models.Model):
 
         # Create new verse relation objects
         verse_relations = [
-            VerseRelation(content_object=self, verse=verse_id)
-            for verse_id in verse_ids
+            VerseRelation(content_object=self, verse=verse_id) for verse_id in verse_ids
         ]
-
 
         VerseRelation.objects.bulk_create(verse_relations)
 
