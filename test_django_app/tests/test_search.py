@@ -1,20 +1,51 @@
-import pytest
+from django.test import TestCase
 
 import djangobible as bible
 from test_django_app.models import TestObject
+from test_django_app.tests.factories import TestObjectFactory
 
 
-@pytest.mark.django_db
-def test_search_by_text_with_scripture_references(
-    test_objects, text_with_scripture_references
-):
-    # Given test_objects with scripture references and a search text
-    # When searching for test objects associated with the verses in the search text
-    references = bible.get_references(text_with_scripture_references)
-    verse_ids = bible.convert_references_to_verse_ids(references)
-    actual_test_objects = TestObject.objects.filter_by_verse_ids(verse_ids)
+def get_test_objects():
+    test_objects = []
+    references = [
+        "Genesis 1:1-10",
+        "Psalm 130",
+        "Matthew 18",
+        "Luke 15",
+        "Exodus 20",
+        "Jeremiah 29",
+        "Psalm 51",
+        "Genesis 1:1",
+        "luke 2",
+        "Genesis 1:1-4",
+    ]
 
-    # Then the result is a queryset containing test object 1 and test object 5
-    assert len(actual_test_objects) == 2
-    assert test_objects[1] in actual_test_objects
-    assert test_objects[5] in actual_test_objects
+    for i in range(10):
+        test_object = TestObjectFactory()
+        test_object.set_verses(
+            bible.convert_references_to_verse_ids(bible.get_references(references[i]))
+        )
+        test_objects.append(test_object)
+
+    return test_objects
+
+
+class SearchTestCase(TestCase):
+    def test_search_by_text_with_scripture_references(self):
+        # Given test_objects with scripture references and a search text
+        text = "You should read Psalm 130:4,8, Jeremiah 29:32-30:10,31:12, Matthew 1:18 - 2:18, and Luke 3: 5-7."
+        test_objects = get_test_objects()
+
+        # When searching for test objects associated with the verses in the search text
+        references = bible.get_references(text)
+        verse_ids = bible.convert_references_to_verse_ids(references)
+        actual_test_objects = TestObject.objects.filter_by_verse_ids(verse_ids)
+
+        # Then the result is a queryset containing test object 1 and test object 5
+        self.assertEqual(len(actual_test_objects), 2)
+
+        for index, test_object in enumerate(test_objects):
+            if index in [1, 5]:
+                self.assertIn(test_object, actual_test_objects)
+            else:
+                self.assertNotIn(test_object, actual_test_objects)

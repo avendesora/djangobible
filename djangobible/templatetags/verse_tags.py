@@ -36,13 +36,11 @@ def verse_text(verse_id: int, **kwargs) -> str:
     :return: the verse text for the given verse id and version
     """
     version_id: Optional[str] = kwargs.get("version")
-    text: str = ""
-
-    if version_id is not None:
-        text = bible.get_verse_text(verse_id, _get_version(version_id))
-    else:
-        text = bible.get_verse_text(verse_id)
-
+    text: str = (
+        bible.get_verse_text(verse_id, _get_version(version_id))
+        if version_id
+        else bible.get_verse_text(verse_id)
+    )
     include_verse_numbers: bool = kwargs.get("include_verse_numbers", False)
 
     if include_verse_numbers:
@@ -60,4 +58,4 @@ def _get_version(version_id: str) -> Optional[bible.Version]:
         except ValueError:
             pass
 
-    return None
+    return bible.versions.DEFAULT_VERSION
