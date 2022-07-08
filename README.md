@@ -11,7 +11,7 @@ The djangobible library is a Django app that wraps the [pythonbible](https://git
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/83a28131bf6642ed9e439344122686fc)](https://www.codacy.com/gh/avendesora/djangobible/dashboard?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Coverage)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-[![Python 3.10](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20dev-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/)
+[![Python 3.10](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/)
 [![Django 3.2+](https://img.shields.io/badge/Django-3.2%20%7C%204.0-blue)](https://www.djangoproject.com/download/)
 
 ## Installation
@@ -33,7 +33,7 @@ INSTALLED_APPS = [
 
 Run the django migrations for djangobible
 
-```
+```shell script
 ./manage.py migrate djangobible
 ```
 
