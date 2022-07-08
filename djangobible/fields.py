@@ -50,8 +50,8 @@ class VerseField(models.IntegerField):
             }
         )
 
-    def get_db_prep_value(
-        self, value: Optional[Union[int, str]], *args, **kwargs
+    def get_db_prep_save(
+        self, value: Optional[Union[int, str]], connection
     ) -> Optional[int]:
         if value is None:
             return None

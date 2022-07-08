@@ -15,11 +15,13 @@ class VerseRelation(models.Model):
     class Meta:
         db_table = "verse_relation"
 
-    def save(self, *args, **kwargs):
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
         if not bible.is_valid_verse_id(self.verse):
             raise bible.InvalidVerseError(verse_id=self.verse)
 
-        super().save(*args, **kwargs)
+        super().save(force_insert, force_update, using, update_fields)
 
 
 class ScriptureIndexedModelManager(models.Manager):
