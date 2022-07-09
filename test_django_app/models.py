@@ -14,7 +14,7 @@ class TestObject(ScriptureIndexedModel):
 
 class TestSingleVerseObject(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
-    verse = VerseField()
+    verse = VerseField(null=True, blank=True)
 
     def __str__(self):
         """Return the name when the TestObject is referenced as a string."""

@@ -9,11 +9,8 @@ from django.utils.functional import cached_property
 from .validators import validate_verse
 
 
-class VerseField(models.IntegerField):
+class VerseField(models.Field):
     def get_prep_value(self, value):
-        if value is None:
-            return None
-
         if isinstance(value, str):
             validate_verse(value)
             value = bible.convert_references_to_verse_ids(bible.get_references(value))[
@@ -53,7 +50,7 @@ class VerseField(models.IntegerField):
     def get_db_prep_save(
         self, value: Optional[Union[int, str]], connection
     ) -> Optional[int]:
-        if value is None:
+        if not value:
             return None
 
         if isinstance(value, str):
@@ -71,3 +68,6 @@ class VerseField(models.IntegerField):
             raise ValidationError(f"{value} is not a valid verse id.")
 
         return value
+
+    def get_internal_type(self):
+        return "IntegerField"
