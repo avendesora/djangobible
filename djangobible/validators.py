@@ -1,14 +1,21 @@
-from typing import List, Optional
+"""Validators for djangobible custom Fields."""
 
-import pythonbible as bible
+from __future__ import annotations
+
 from django.core.exceptions import ValidationError
+from pythonbible import (
+    NormalizedReference,
+    convert_references_to_verse_ids,
+    get_references,
+)
 
 
-def validate_verse(value: Optional[str]) -> None:
-    if value is None:
+def validate_verse(verse_value: str | None) -> None:
+    """Validate that the given value is a valid string representation of a verse."""
+    if verse_value is None:
         return
 
-    references: List[bible.NormalizedReference] = bible.get_references(value)
+    references: list[NormalizedReference] = get_references(verse_value)
 
     if not references:
         raise ValidationError("Not a valid reference.")
@@ -16,7 +23,7 @@ def validate_verse(value: Optional[str]) -> None:
     if len(references) > 1:
         raise ValidationError("Only single verse references allowed.")
 
-    verse_ids: List[int] = bible.convert_references_to_verse_ids(references)
+    verse_ids: list[int] = convert_references_to_verse_ids(references)
 
     if len(verse_ids) > 1:
         raise ValidationError("Only single verse references allowed.")

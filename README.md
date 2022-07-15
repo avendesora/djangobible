@@ -6,9 +6,13 @@ The djangobible library is a Django app that wraps the [pythonbible](https://git
 [![license MIT](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
 
 ![Django CI](https://github.com/avendesora/djangobible/workflows/Django%20CI/badge.svg)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/83a28131bf6642ed9e439344122686fc)](https://www.codacy.com/gh/avendesora/djangobible/dashboard?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Coverage)
+
 ![CodeQL](https://github.com/avendesora/djangobible/workflows/CodeQL/badge.svg)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ca34603bdaf8446ba288430b69092093)](https://app.codacy.com/gh/avendesora/djangobible?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Grade_Settings)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/83a28131bf6642ed9e439344122686fc)](https://www.codacy.com/gh/avendesora/djangobible/dashboard?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Coverage)
+
+
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/avendesora/djangobible/main.svg)](https://results.pre-commit.ci/latest/github/avendesora/djangobible/main)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 [![Python 3.10](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/)
@@ -65,7 +69,7 @@ If you are using Python 3.7+, the dataclasses library is included in the Python 
 
 ### Django versions
 
-The djangobible library is actively tested on Django 3.0 and 3.1, and support for Django 3.2 is planned. It may work on previous versions, but it has not been tested on other versions. 
+The djangobible library is actively tested on Django 3.0 and 3.1, and support for Django 3.2 is planned. It may work on previous versions, but it has not been tested on other versions.
 
 ## Features
 
@@ -85,7 +89,7 @@ This includes features such as:
 - Searching text for Scripture references
 - Converting a normalized scripture reference into a list of integer verse ids
 - Converting a list of verse id integers into a list of normalized scripture references
-- Converting a list of normalized scripture references into a formatted string scripture reference 
+- Converting a list of normalized scripture references into a formatted string scripture reference
 - Retrieving the Biblical text (in one or more open-source or public domain versions) for a given verse ID integer
 
 For more information, see the [pythonbible documentation](https://github.com/avendesora/pythonbible).
@@ -164,7 +168,7 @@ import djangobible as bible
 
 class MyModel(models.Model):
     ...  # other fields
-    
+
     verse = bible.VerseField()
 ```
 

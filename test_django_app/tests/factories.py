@@ -1,9 +1,11 @@
+from __future__ import annotations
+
 import random
 
 import factory
 from django.contrib.auth import get_user_model
+from pythonbible.verses import VERSE_IDS
 
-import djangobible
 from test_django_app.models import TestObject, TestSingleVerseObject
 
 TEST_USERNAME = "admin"
@@ -19,7 +21,9 @@ class SuperUserFactory(factory.django.DjangoModelFactory):
     def _create(cls, model_class, *args, **kwargs):
         manager = cls._get_manager(model_class)
         return manager.create_superuser(
-            username=TEST_USERNAME, email=TEST_EMAIL, password=TEST_PASSWORD
+            username=TEST_USERNAME,
+            email=TEST_EMAIL,
+            password=TEST_PASSWORD,
         )
 
 
@@ -35,4 +39,4 @@ class TestSingleVerseObjectFactory(factory.django.DjangoModelFactory):
         model = TestSingleVerseObject
 
     name = factory.Faker("name")
-    verse = random.choice(djangobible.verses.VERSE_IDS)
+    verse = random.choice(VERSE_IDS)
