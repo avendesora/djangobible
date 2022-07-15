@@ -54,7 +54,12 @@ class VerseField(models.Field):
         """Convert the value from the DB."""
         return self.to_python(value)
 
-    def formfield(self: VerseField, **kwargs: Any) -> forms.Field:
+    def formfield(
+        self: VerseField,
+        form_class: Any = None,
+        choices_form_class: Any = None,
+        **kwargs: Any,
+    ) -> forms.Field:
         """Make sure the form field is a CharField."""
         return super().formfield(
             **{
