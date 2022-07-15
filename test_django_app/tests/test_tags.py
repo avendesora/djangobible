@@ -1,11 +1,13 @@
-from django.test import TestCase
+from __future__ import annotations
 
-import djangobible as bible
+from django.test import TestCase
+from pythonbible import InvalidVerseError, Version
+
 from djangobible.templatetags.verse_tags import verse_reference, verse_text
 
 
 class TagTestCase(TestCase):
-    def test_tag_verse_reference(self):
+    def test_tag_verse_reference(self: TagTestCase) -> None:
         # Given a valid verse id
         valid_verse_id = 1001001
 
@@ -15,30 +17,32 @@ class TagTestCase(TestCase):
         # Then the reference is as expected
         self.assertEqual(actual_reference, "Genesis 1:1")
 
-    def test_tag_verse_reference_null(self):
+    def test_tag_verse_reference_null(self: TagTestCase) -> None:
         # Given a null verse id
         # When getting the reference for that verse_id
         # Then an invalid verse error is raised.
-        with self.assertRaises(bible.InvalidVerseError):
+        with self.assertRaises(InvalidVerseError):
             verse_reference(None)
 
-    def test_tag_verse_reference_invalid(self):
+    def test_tag_verse_reference_invalid(self: TagTestCase) -> None:
         # Given an invalid verse id
         invalid_verse_id = 1100100
 
         # When getting the reference for that verse_id
         # Then an invalid verse error is raised.
-        with self.assertRaises(bible.InvalidVerseError):
+        with self.assertRaises(InvalidVerseError):
             verse_reference(invalid_verse_id)
 
-    def test_tag_verse_reference_version_full_title(self):
+    def test_tag_verse_reference_version_full_title(self: TagTestCase) -> None:
         # Given a verse id and a version
         valid_verse_id = 1001001
-        version_asv = bible.Version.AMERICAN_STANDARD
+        version_asv = Version.AMERICAN_STANDARD
 
         # When getting the reference
         reference = verse_reference(
-            valid_verse_id, version=version_asv.value, full_title=True
+            valid_verse_id,
+            version=version_asv.value,
+            full_title=True,
         )
 
         # Then the full title reference is as expected.
@@ -47,7 +51,7 @@ class TagTestCase(TestCase):
             "The First Book of Moses, Commonly Called Genesis 1:1",
         )
 
-    def test_tag_verse_text(self):
+    def test_tag_verse_text(self: TagTestCase) -> None:
         # Given a verse id
         valid_verse_id = 1001001
 
@@ -60,26 +64,26 @@ class TagTestCase(TestCase):
             "In the beginning God created the heaven and the earth.",
         )
 
-    def test_tag_verse_text_null(self):
+    def test_tag_verse_text_null(self: TagTestCase) -> None:
         # Given a null verse id
         # When getting the verse text for that verse id
         # Then an invalid verse error is raised.
-        with self.assertRaises(bible.InvalidVerseError):
+        with self.assertRaises(InvalidVerseError):
             verse_text(None)
 
-    def test_tag_verse_text_invalid(self):
+    def test_tag_verse_text_invalid(self: TagTestCase) -> None:
         # Given an invalid verse id
         invalid_verse_id = 1100100
 
         # When getting the verse text for that verse id
         # Then an invalid verse error is raised.
-        with self.assertRaises(bible.InvalidVerseError):
+        with self.assertRaises(InvalidVerseError):
             verse_text(invalid_verse_id)
 
-    def test_tag_verse_text_version(self):
+    def test_tag_verse_text_version(self: TagTestCase) -> None:
         # Given a valid verse id and a version that is not the default
         valid_verse_id = 1001001
-        version_asv = bible.Version.AMERICAN_STANDARD
+        version_asv = Version.AMERICAN_STANDARD
 
         # When getting the verse text for that verse_id and version
         actual_verse_text = verse_text(valid_verse_id, version=version_asv)
@@ -90,7 +94,7 @@ class TagTestCase(TestCase):
             "In the beginning God created the heavens and the earth.",
         )
 
-    def test_tag_verse_bad_version(self):
+    def test_tag_verse_bad_version(self: TagTestCase) -> None:
         # Given a valid verse id and a version that is not a valid version
         valid_verse_id = 1001001
         bad_version = "bad version"
@@ -104,11 +108,12 @@ class TagTestCase(TestCase):
             "In the beginning God created the heaven and the earth.",
         )
 
-    def test_tag_verse_text_verse_numbers(self):
+    def test_tag_verse_text_verse_numbers(self: TagTestCase) -> None:
         # Given a valid verse id
         valid_verse_id = 1001001
 
-        # When getting the verse text while setting the include_verse_numbers keyword argument to True
+        # When getting the verse text while setting the include_verse_numbers keyword
+        # argument to True
         actual_verse_text = verse_text(valid_verse_id, include_verse_numbers=True)
 
         # Then the verse text is as expected.
