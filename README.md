@@ -46,30 +46,6 @@ There currently are no settings (other than INSTALLED_APPS) related to the djang
 
 Also, once support is implemented for multiple locales and languages, there could be related settings for that functionality.
 
-### Optional Dependencies
-
-If the [defusedxml](https://github.com/tiran/defusedxml) library is installed, djangobible/pythonbible will use it to parse XML files rather than the builtin xml.etree library.
-
-To install djangobible with all optional dependencies, use the following command.
-
-```shell script
-pip install djangobible[all]
-```
-
-### Python 3.6
-
-Python 3.6 is not officially supported (djangobible is only tested on Python 3.7+). However, djangobible should work on Python 3.6 if you have the dataclasses library installed:
-
-```shell script
-pip install dataclasses
-```
-
-If you are using Python 3.7+, the dataclasses library is included in the Python standard library, and you do not need to explicitly install the dataclasses library.
-
-### Django versions
-
-The djangobible library is actively tested on Django 3.0 and 3.1, and support for Django 3.2 is planned. It may work on previous versions, but it has not been tested on other versions.
-
 ## Features
 
 The djangobible library is a complete wrapper for the [pythonbible](https://github.com/avendesora/pythonbible) library, so importing the djangobible library as:
