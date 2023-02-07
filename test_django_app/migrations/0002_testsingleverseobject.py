@@ -8,7 +8,6 @@ import djangobible.fields
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("test_django_app", "0001_initial"),
     ]
