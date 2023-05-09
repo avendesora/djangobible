@@ -2,20 +2,42 @@
 
 The djangobible library is a Django app that wraps the [pythonbible](https://github.com/avendesora/pythonbible) library and provides models, managers, and other tools to easily index an object by a scripture reference.
 
-[![PyPI version](https://img.shields.io/pypi/v/djangobible?color=blue&logo=pypi&logoColor=lightgray)](https://pypi.org/project/djangobible/)
-[![license MIT](https://img.shields.io/badge/license-MIT-orange.svg)](https://opensource.org/licenses/MIT)
-
-![Django CI](https://github.com/avendesora/djangobible/workflows/Django%20CI/badge.svg)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/83a28131bf6642ed9e439344122686fc)](https://www.codacy.com/gh/avendesora/djangobible/dashboard?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Coverage)
-
-![CodeQL](https://github.com/avendesora/djangobible/workflows/CodeQL/badge.svg)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ca34603bdaf8446ba288430b69092093)](https://app.codacy.com/gh/avendesora/djangobible?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Grade_Settings)
-
-[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/avendesora/djangobible/main.svg)](https://results.pre-commit.ci/latest/github/avendesora/djangobible/main)
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-
-[![Python 3.10](https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue?logo=python&logoColor=lightgray)](https://www.python.org/downloads/)
-[![Django 3.2+](https://img.shields.io/badge/Django-3.2%20%7C%204.0%20%7C%204.1%20%7C%204.2-blue)](https://www.djangoproject.com/download/)
+<table>
+    <tr>
+        <td>Latest Version</td>
+        <td>
+            <a href="https://pypi.org/project/djangobible/"><img src="https://img.shields.io/pypi/v/djangobible?color=gold&logo=pypi&logoColor=lightgray"></a>
+            <img src="https://img.shields.io/pypi/dm/djangobible?color=gold">
+        </td>
+    </tr>
+    <tr>
+        <td>License</td>
+        <td><a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-orange.svg"></a></td>
+    </tr>
+    <tr>
+        <td>Tests</td>
+        <td>
+            <img src="https://github.com/avendesora/djangobible/workflows/Django%20CI/badge.svg">
+            <a href="https://www.codacy.com/gh/avendesora/djangobible/dashboard?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/83a28131bf6642ed9e439344122686fc"></a>
+        </td>
+    </tr>
+    <tr>
+        <td>Code Quality</td>
+        <td>
+            <img src="https://github.com/avendesora/djangobible/workflows/CodeQL/badge.svg">
+            <a href="https://app.codacy.com/gh/avendesora/djangobible?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Grade_Settings"><img src="https://api.codacy.com/project/badge/Grade/ca34603bdaf8446ba288430b69092093"></a><br/>
+            <a href="https://results.pre-commit.ci/latest/github/avendesora/djangobible/main"><img src="https://results.pre-commit.ci/badge/github/avendesora/djangobible/main.svg"></a>
+            <a href="https://github.com/psf/black"><img src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
+        </td>
+    </tr>
+    <tr>
+        <td>Supported Python/Django Versions</td>
+        <td>
+            <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.7%20%7C%203.8%20%7C%203.9%20%7C%203.10%20%7C%203.11-blue?logo=python&logoColor=lightgray"></a><br />
+            <a href="https://www.djangoproject.com/download/"><img src="https://img.shields.io/badge/Django-3.2%20%7C%204.0%20%7C%204.1%20%7C%204.2-blue"></a>
+        </td>
+    </tr>
+</table>
 
 ## Installation
 
