@@ -12,7 +12,7 @@ description-file = "README.md"
 requires-python = ">=3.7"
 requires = [
     "Django >=3.2.0",
-    "pythonbible >=0.8",
+    "pythonbible >=0.9",
 ]
 
 [tool.flit.metadata.requires-extra]
