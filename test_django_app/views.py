@@ -9,7 +9,7 @@ def verse_tag_views(request):
     """View for testing verse tags."""
     view_data = {
         "verse_id": 1001001,
-        "version": "ASV",
+        "version": "KJV",
         "full_title": True,
     }
 

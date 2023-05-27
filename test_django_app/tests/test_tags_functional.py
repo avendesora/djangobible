@@ -31,15 +31,15 @@ class TagsFunctionalTestcase(StaticLiveServerTestCase):
         )
         self.assertEqual(
             page.locator("id=verse-text").text_content(),
-            "In the beginning God created the heaven and the earth.",
+            "In the beginning God created the heavens and the earth.",
         )
         self.assertEqual(
             page.locator("id=full-verse-reference").text_content(),
-            "The First Book of Moses, Commonly Called Genesis 1:1",
+            "The First Book of Moses, called Genesis 1:1",
         )
         self.assertEqual(
-            page.locator("id=asv-verse-text").text_content(),
-            "In the beginning God created the heavens and the earth.",
+            page.locator("id=kjv-verse-text").text_content(),
+            "In the beginning God created the heaven and the earth.",
         )
 
         page.close()

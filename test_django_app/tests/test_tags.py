@@ -61,7 +61,7 @@ class TagTestCase(TestCase):
         # Then the verse text is as expected.
         self.assertEqual(
             actual_verse_text,
-            "In the beginning God created the heaven and the earth.",
+            "In the beginning God created the heavens and the earth.",
         )
 
     def test_tag_verse_text_null(self: TagTestCase) -> None:
@@ -83,7 +83,7 @@ class TagTestCase(TestCase):
     def test_tag_verse_text_version(self: TagTestCase) -> None:
         # Given a valid verse id and a version that is not the default
         valid_verse_id = 1001001
-        version_asv = Version.AMERICAN_STANDARD
+        version_asv = Version.KING_JAMES
 
         # When getting the verse text for that verse_id and version
         actual_verse_text = verse_text(valid_verse_id, version=version_asv)
@@ -91,7 +91,7 @@ class TagTestCase(TestCase):
         # Then the verse text is as expected.
         self.assertEqual(
             actual_verse_text,
-            "In the beginning God created the heavens and the earth.",
+            "In the beginning God created the heaven and the earth.",
         )
 
     def test_tag_verse_bad_version(self: TagTestCase) -> None:
@@ -105,7 +105,7 @@ class TagTestCase(TestCase):
         # Then the verse text defaults to kjv
         self.assertEqual(
             actual_verse_text,
-            "In the beginning God created the heaven and the earth.",
+            "In the beginning God created the heavens and the earth.",
         )
 
     def test_tag_verse_text_verse_numbers(self: TagTestCase) -> None:
@@ -119,5 +119,5 @@ class TagTestCase(TestCase):
         # Then the verse text is as expected.
         self.assertEqual(
             actual_verse_text,
-            "1. In the beginning God created the heaven and the earth.",
+            "1. In the beginning God created the heavens and the earth.",
         )
