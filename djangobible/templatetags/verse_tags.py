@@ -24,9 +24,7 @@ def verse_reference(verse_id: int, **kwargs: Any) -> str:
     verse: int
     book, chapter, verse = bible.get_book_chapter_verse(verse_id)
 
-    version_id: str | None = kwargs.get("version")
-
-    if version_id:
+    if version_id := kwargs.get("version"):
         kwargs["version"] = _get_version(version_id)
 
     reference = bible.NormalizedReference(book, chapter, verse, chapter, verse)
