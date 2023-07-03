@@ -9,7 +9,7 @@ author-email = "npatton@gmail.com"
 home-page = "https://github.com/avendesora/djangobible"
 classifiers = ["License :: OSI Approved :: MIT License"]
 description-file = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 requires = [
     "Django >=3.2.0",
     "pythonbible >=0.10.0",

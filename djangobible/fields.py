@@ -79,14 +79,13 @@ class VerseField(models.Field):
 
         if isinstance(value, str):
             references = bible.get_references(value)
-            verse_ids = bible.convert_references_to_verse_ids(references)
 
-            if not verse_ids:
+            if verse_ids := bible.convert_references_to_verse_ids(references):
+                value = verse_ids[0]
+            else:
                 raise ValidationError(
                     f"{value} does not contain a valid Scripture reference.",
                 )
-
-            value = verse_ids[0]
 
         if not bible.is_valid_verse_id(value):
             raise ValidationError(f"{value} is not a valid verse id.")
