@@ -1,2 +1,2 @@
-Django==3.2.0
+Django==4.2.2
 pythonbible==0.10.0
