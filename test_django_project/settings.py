@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 from __future__ import annotations
 
-import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,14 +18,8 @@ from typing import Any
 
 BASE_DIR: Path = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+SECRET_KEY: str = "this-is-not-a-real-secret-it-is-just-for-testing"
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# this project/app shouldn't ever be in production, but in the interest of good habits
-SECRET_KEY: str | None = os.environ.get("DJANGO_SECRET_KEY")
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG: bool = True
 
 ALLOWED_HOSTS: list[str] = []
