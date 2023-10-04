@@ -17,7 +17,8 @@ The djangobible library is a Django app that wraps the [pythonbible](https://git
     <tr>
         <td>Tests</td>
         <td>
-            <img src="https://github.com/avendesora/djangobible/workflows/Django%20CI/badge.svg">
+            <img src="https://github.com/avendesora/djangobible/actions/workflows/tests.yml/badge.svg">
+            <img src="https://github.com/avendesora/djangobible/workflows/Django%20CI/badge.svg"><br/>
             <a href="https://www.codacy.com/gh/avendesora/djangobible/dashboard?utm_source=github.com&utm_medium=referral&utm_content=avendesora/djangobible&utm_campaign=Badge_Coverage"><img src="https://app.codacy.com/project/badge/Coverage/83a28131bf6642ed9e439344122686fc"></a>
         </td>
     </tr>
