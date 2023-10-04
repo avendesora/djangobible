@@ -13,6 +13,7 @@ def tests(session: nox.Session, django: str) -> None:
     session.install("pythonbible")
     session.install("factory-boy")
     session.install("playwright")
+    session.run("playwright", "install")
     session.run("python", "manage.py", "test")
     session.notify("tests_python_3_12")
 
