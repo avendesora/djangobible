@@ -35,7 +35,7 @@ The djangobible library is a Django app that wraps the [pythonbible](https://git
         <td>Supported Python/Django Versions</td>
         <td>
             <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue?logo=python&logoColor=lightgray"></a><br />
-            <a href="https://www.djangoproject.com/download/"><img src="https://img.shields.io/badge/Django-3.2%20%7C%204.1%20%7C%204.2-blue"></a>
+            <a href="https://www.djangoproject.com/download/"><img src="https://img.shields.io/badge/Django-3.2%20%7C%204.1%20%7C%204.2%20%7C%205.0b1-blue"></a>
         </td>
     </tr>
 </table>

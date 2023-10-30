@@ -1,5 +1,6 @@
 [run]
 omit =
     manage.py
+    noxfile.py
     test_django_app/*
     test_django_project/*
