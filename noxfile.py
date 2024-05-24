@@ -13,7 +13,7 @@ def tests(session: nox.Session, django: str) -> None:
     session.notify("tests_django_5")
 
 
-@nox.session(python=["3.10", "3.11", "3.12", "3.13.0-beta.1"])
+@nox.session(python=["3.10", "3.11", "3.12", "3.13.0b1"])
 @nox.parametrize("django", ["5.0", "5.1a1"])
 def tests_django_5(session: nox.Session, django: str) -> None:
     """Run the test suite for Django 5.0+ (Python 3.10+)."""
