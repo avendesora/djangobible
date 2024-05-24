@@ -5,7 +5,7 @@ from __future__ import annotations
 import nox
 
 
-@nox.session(python=["3.8", "3.9", "3.10", "3.11", "3.12", "3.13.0-beta.1"])
+@nox.session(python=["3.8", "3.9", "3.10", "3.11", "3.12", "3.13.0b1"])
 @nox.parametrize("django", ["4.2"])
 def tests(session: nox.Session, django: str) -> None:
     """Run the test suite."""
