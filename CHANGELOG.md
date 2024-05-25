@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added support for Django 5.0
 - Added full support for Python 3.12
   - Added automated functional testing now that there is a version of greenlet that supports Python 3.12
-- Added automated testing for Python 3.13-beta
+- ~~Added automated testing for Python 3.13-beta~~ (not yet supported by greenlet)
 - Added automated testing for Django 5.1-alpha
 
 ### Changed

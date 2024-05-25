@@ -34,8 +34,9 @@ The djangobible library is a Django app that wraps the [pythonbible](https://git
     <tr>
         <td>Supported Python/Django Versions</td>
         <td>
-            <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13beta-blue?logo=python&logoColor=lightgray"></a><br />
-            <a href="https://www.djangoproject.com/download/"><img src="https://img.shields.io/badge/Django-4.2%20%7C%205.0%20%7C%205.1alpha-blue"></a>
+            <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12-blue?logo=python&logoColor=lightgray"></a><br />
+            <a href="https://www.djangoproject.com/download/"><img src="https://img.shields.io/badge/Django-4.2%20%7C%205.0%20%7C%205.1alpha-blue"></a><br />
+            Attempted to test with Python 3.13, but the testing framework has a dependency that has not yet been updated to work with Python 3.13.
         </td>
     </tr>
 </table>
