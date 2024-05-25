@@ -5,16 +5,18 @@ from __future__ import annotations
 import nox
 
 
+# TODO - add "3.13" to python versions once greenlet is updated
 @nox.session(python=["3.8", "3.9", "3.10", "3.11", "3.12"])
-@nox.parametrize("django", ["3.2", "4.1", "4.2"])
+@nox.parametrize("django", ["4.2"])
 def tests(session: nox.Session, django: str) -> None:
     """Run the test suite."""
     _run_all_tests_for_environment(session, django)
     session.notify("tests_django_5")
 
 
+# TODO - add "3.13" to python versions once greenlet is updated
 @nox.session(python=["3.10", "3.11", "3.12"])
-@nox.parametrize("django", ["5.0b1"])
+@nox.parametrize("django", ["5.0", "5.1a1"])
 def tests_django_5(session: nox.Session, django: str) -> None:
     """Run the test suite for Django 5.0+ (Python 3.10+)."""
     _run_all_tests_for_environment(session, django)
