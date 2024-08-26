@@ -27,7 +27,7 @@ class ScriptureIndexedModelAdminForm(forms.ModelForm):
         kwargs.update(
             initial={
                 "reference": bible.format_scripture_references(
-                    bible.convert_verse_ids_to_references(verse_ids),
+                    bible.convert_verse_ids_to_references(list(verse_ids)),
                 ),
             },
         )
