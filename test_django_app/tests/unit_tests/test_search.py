@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 from django.test import TestCase
-from pythonbible import convert_references_to_verse_ids, get_references
+from pythonbible import convert_references_to_verse_ids
+from pythonbible import get_references
 
 from test_django_app.models import TestObject
 from test_django_app.tests.factories import TestObjectFactory

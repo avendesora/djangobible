@@ -6,7 +6,8 @@ import factory
 from django.contrib.auth import get_user_model
 from pythonbible.verses import VERSE_IDS
 
-from test_django_app.models import TestObject, TestSingleVerseObject
+from test_django_app.models import TestObject
+from test_django_app.models import TestSingleVerseObject
 
 TEST_USERNAME = "admin"
 TEST_EMAIL = "admin@python.bible"
@@ -18,7 +19,7 @@ class SuperUserFactory(factory.django.DjangoModelFactory):
         model = get_user_model()
 
     @classmethod
-    def _create(cls, model_class, *args, **kwargs):
+    def _create(cls, model_class, *args, **kwargs) -> get_user_model():  # noqa: ARG003
         manager = cls._get_manager(model_class)
         return manager.create_superuser(
             username=TEST_USERNAME,

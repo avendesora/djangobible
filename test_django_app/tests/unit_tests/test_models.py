@@ -2,19 +2,15 @@ from __future__ import annotations
 
 from django.core.exceptions import ValidationError
 from django.test import TestCase
-from pythonbible import (
-    InvalidVerseError,
-    convert_references_to_verse_ids,
-    convert_verse_ids_to_references,
-    format_scripture_references,
-    get_references,
-)
+from pythonbible import InvalidVerseError
+from pythonbible import convert_references_to_verse_ids
+from pythonbible import convert_verse_ids_to_references
+from pythonbible import format_scripture_references
+from pythonbible import get_references
 
 from test_django_app.models import TestSingleVerseObject
-from test_django_app.tests.factories import (
-    TestObjectFactory,
-    TestSingleVerseObjectFactory,
-)
+from test_django_app.tests.factories import TestObjectFactory
+from test_django_app.tests.factories import TestSingleVerseObjectFactory
 
 EXPECTED_VERSE_IDS: tuple[int, ...] = (
     19130004,
@@ -260,7 +256,7 @@ class ModelTestCase(TestCase):
         self.assertNotEqual(test_single_verse_object.verse, verse_id)
 
         # When we set the verse on the test object to be the reference
-        test_single_verse_object.verse = reference
+        test_single_verse_object.verse = reference  # type: ignore[assignment]
         test_single_verse_object.save()
 
         # Then the verse associated with the object matches the reference
@@ -282,11 +278,11 @@ class ModelTestCase(TestCase):
         # When we set the verse on the test object to be the invalid reference
         # Then a validation error is raised.
         with self.assertRaises(ValidationError):
-            test_single_verse_object.verse = "invalid reference"
+            test_single_verse_object.verse = "invalid reference"  # type: ignore[assignment]
             test_single_verse_object.save()
 
         # When we set the verse on the test object to be the invalid verse id
         # Then a validation error is raised
         with self.assertRaises(ValidationError):
-            test_single_verse_object.verse = INVALID_VERSE_ID
+            test_single_verse_object.verse = INVALID_VERSE_ID  # type: ignore[assignment]
             test_single_verse_object.save()

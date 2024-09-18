@@ -5,7 +5,8 @@ import os
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from playwright.sync_api import sync_playwright
 
-from test_django_app.tests.factories import TEST_PASSWORD, SuperUserFactory
+from test_django_app.tests.factories import TEST_PASSWORD
+from test_django_app.tests.factories import SuperUserFactory
 
 
 class AdminTestcase(StaticLiveServerTestCase):

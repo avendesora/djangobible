@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from django.db import migrations, models
+from django.db import migrations
+from django.db import models
 
 import djangobible.fields
 

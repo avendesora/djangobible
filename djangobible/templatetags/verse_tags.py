@@ -13,8 +13,7 @@ register = template.Library()
 
 @register.simple_tag
 def verse_reference(verse_id: int, **kwargs: Any) -> str:
-    """
-    For a given verse id return the formatted scripture reference string.
+    """For a given verse id return the formatted scripture reference string.
 
     :param verse_id:
     :return: the scripture reference string for the given verse id
@@ -34,8 +33,7 @@ def verse_reference(verse_id: int, **kwargs: Any) -> str:
 
 @register.simple_tag
 def verse_text(verse_id: int, **kwargs: Any) -> str:
-    """
-    For a given verse id and version, return the verse text string.
+    """For a given verse id and version, return the verse text string.
 
     :param verse_id:
     :return: the verse text for the given verse id and version

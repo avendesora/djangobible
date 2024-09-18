@@ -15,6 +15,76 @@ requires = [
     "pythonbible==0.13.1",
 ]
 
-[tool.isort]
-profile = "black"
-add_imports = "from __future__ import annotations"
+[tool.ruff.lint]
+select = [
+    "A",
+    "ANN",
+    "ARG",
+    "B",
+    "BLE",
+    "COM",
+    "C4",
+    "C90",
+    "D",
+    "DTZ",
+    "E",
+    "EM",
+    "ERA",
+    "EXE",
+    "F",
+    "FBT",
+    "G",
+    "I",
+    "ICN",
+    "INP",
+    "ISC",
+    "N",
+    "NPY",
+    "PD",
+    "PGH",
+    "PIE",
+    "PL",
+#    "PT",
+    "PTH",
+    "PYI",
+    "Q",
+    "RET",
+    "RSE",
+    "RUF",
+    "S",
+    "SIM",
+    "SLF",
+    "TCH",
+    "TID",
+    "TRY",
+    "T10",
+    "T20",
+    "W",
+]
+ignore = [
+    "ANN401",  # allow typing.Any for now
+    "COM812",  # conflicts with formatter
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D105",
+    "D106",
+    "FBT001",
+    "FBT002",
+    "FBT003",
+    "ISC001",  # conflicts with formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/migrations/*" = ["RUF012"]
+"djangobible/__init__.py" = ["F403"]
+"test_django_app/tests/factories.py" = ["ANN001", "ANN002", "ANN003", "ANN102", "ANN206", "S105", "S311"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.mypy]
+exclude = ["test_django_app/migrations/*", "venv/*"]
+ignore_missing_imports = true

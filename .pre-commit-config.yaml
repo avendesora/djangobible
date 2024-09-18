@@ -1,41 +1,58 @@
+ci:
+  skip: [mypy,sourcery]
+
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: debug-statements
-      - id: requirements-txt-fixer
-      - id: check-added-large-files
-  - repo: https://github.com/psf/black
-    rev: 24.8.0
-    hooks:
-      - id: black
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-  - repo: https://github.com/pycqa/flake8
-    rev: 7.1.1
-    hooks:
-      - id: flake8
-        additional_dependencies:
-          - flake8-alfred
-          - flake8-annotations
-          - flake8-bandit
-          - flake8-blind-except
-          - flake8-bugbear
-          - flake8-builtins
-          - flake8-comprehensions
-          - flake8-encodings
-          - flake8-logging-format
-          - flake8-no-pep420
-          - flake8-pie
-          - flake8-polyfill
-          - flake8-print
-          - flake8-return
-          - flake8-simplify
-          - flake8-tidy-imports
-          - flake8-warnings
-          - wemake-python-styleguide
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+  - id: check-ast
+  - id: check-builtin-literals
+  - id: check-case-conflict
+  - id: check-docstring-first
+  - id: check-executables-have-shebangs
+  - id: check-json
+  - id: check-merge-conflict
+  - id: check-shebang-scripts-are-executable
+  - id: check-symlinks
+  - id: check-toml
+  - id: check-vcs-permalinks
+  - id: check-xml
+  - id: check-yaml
+  - id: debug-statements
+  - id: destroyed-symlinks
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: mixed-line-ending
+#  - id: name-tests-test  # this conflicts with Django's test naming convention
+  - id: requirements-txt-fixer
+  - id: sort-simple-yaml
+  - id: trailing-whitespace
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.6.2
+  hooks:
+  - id: ruff
+    args: [--fix, --exit-non-zero-on-fix]
+  - id: ruff-format
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.11.2
+  hooks:
+  - id: mypy
+    exclude: (tests|migrations)/
+- repo: https://github.com/sourcery-ai/sourcery
+  rev: v1.22.0
+  hooks:
+  - id: sourcery
+    # The best way to use Sourcery in a pre-commit hook:
+    # * review only changed lines:
+    # * omit the summary
+    args: [--diff=git diff HEAD, --no-summary]
+
+exclude: |
+  (?x)^(
+      manage.py |
+      test_django_project/__init__.py |
+      test_django_project/asgi.py |
+      test_django_project/settings.py |
+      test_django_project/urls.py |
+      test_django_project/wsgi.py
+  )$

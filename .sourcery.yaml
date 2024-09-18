@@ -1,2 +1,3 @@
-refactor:
+rule_settings:
+  disable: [dont-import-test-modules]
   python_version: '3.8'

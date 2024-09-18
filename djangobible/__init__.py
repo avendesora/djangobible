@@ -1,5 +1,4 @@
-"""
-djangobible python library.
+"""djangobible python library.
 
 djangobible lets you easily associate Django models with Bible Scripture references and
 search accordingly.

@@ -22,7 +22,7 @@ class ScriptureIndexedModelAdminForm(forms.ModelForm):
         **kwargs: dict,
     ) -> None:
         """Initialize the form with the initial reference."""
-        verse_ids = kwargs["instance"].verses.values_list("verse", flat=True)
+        verse_ids = kwargs["instance"].verses.values_list("verse", flat=True)  # type: ignore[attr-defined]
 
         kwargs.update(
             initial={
@@ -41,19 +41,21 @@ class ScriptureIndexedModelAdminForm(forms.ModelForm):
         references = bible.get_references(reference)
 
         if not bible.convert_references_to_verse_ids(references):
-            raise ValidationError(
-                f"{reference} does not contain a valid Scripture reference.",
-            )
+            error_message = f"{reference} does not contain a valid Scripture reference."
+            raise ValidationError(error_message)
 
         return cleaned_data
 
-    def save(self: ScriptureIndexedModel, commit: bool = True) -> Any:
+    def save(
+        self: ScriptureIndexedModel,
+        commit: bool = True,
+    ) -> Any:
         """Save the form and set the verses."""
         reference = self.cleaned_data["reference"]
         references = bible.get_references(reference)
         verse_ids = bible.convert_references_to_verse_ids(references)
 
-        updated_object = super().save(commit=commit)
+        updated_object = super().save(commit=commit)  # type: ignore[misc]
         updated_object.set_verses(verse_ids)
 
         return updated_object
