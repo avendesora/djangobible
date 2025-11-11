@@ -8,14 +8,14 @@ from playwright.sync_api import sync_playwright
 
 class TagsFunctionalTestcase(StaticLiveServerTestCase):
     @classmethod
-    def setUpClass(cls: TagsFunctionalTestcase) -> None:
+    def setUpClass(cls: type[TagsFunctionalTestcase]) -> None:
         os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
         super().setUpClass()
         cls.playwright = sync_playwright().start()
         cls.browser = cls.playwright.chromium.launch(headless=True)
 
     @classmethod
-    def tearDownClass(cls: TagsFunctionalTestcase) -> None:
+    def tearDownClass(cls: type[TagsFunctionalTestcase]) -> None:
         super().tearDownClass()
         cls.browser.close()
         cls.playwright.stop()
