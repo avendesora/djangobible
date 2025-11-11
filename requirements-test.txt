@@ -1,4 +1,0 @@
-coverage
-factory-boy
-nox
-playwright

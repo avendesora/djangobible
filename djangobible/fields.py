@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable
+from typing import Any
+from typing import Callable
 
 import pythonbible as bible
 from django import forms
@@ -24,7 +25,8 @@ class VerseField(models.Field):
                 bible.get_references(value),
             )[0]
         elif isinstance(value, int) and not bible.is_valid_verse_id(value):
-            raise ValidationError(f"{value} is not a valid verse id.")
+            error_message = f"{value} is not a valid verse id."
+            raise ValidationError(error_message)
 
         return super().get_prep_value(value)
 
@@ -56,8 +58,8 @@ class VerseField(models.Field):
 
     def formfield(
         self: VerseField,
-        form_class: Any = None,
-        choices_form_class: Any = None,
+        form_class: type[forms.Field] | None = None,
+        choices_form_class: type[forms.Field] | None = None,
         **kwargs: Any,
     ) -> forms.Field:
         """Make sure the form field is a CharField."""
@@ -70,7 +72,7 @@ class VerseField(models.Field):
 
     def get_db_prep_save(
         self: VerseField,
-        value: Any,
+        value: int | str | None,
         **kwargs: Any,
     ) -> int | None:
         """Validate and convert the value to a verse id int before saving to the DB."""
@@ -83,12 +85,12 @@ class VerseField(models.Field):
             if verse_ids := bible.convert_references_to_verse_ids(references):
                 value = verse_ids[0]
             else:
-                raise ValidationError(
-                    f"{value} does not contain a valid Scripture reference.",
-                )
+                error_message = f"{value} does not contain a valid Scripture reference."
+                raise ValidationError(error_message)
 
         if not bible.is_valid_verse_id(value):
-            raise ValidationError(f"{value} is not a valid verse id.")
+            error_message = f"{value} is not a valid verse id."
+            raise ValidationError(error_message)
 
         return int(value)
 

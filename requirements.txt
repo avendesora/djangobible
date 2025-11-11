@@ -1,2 +1,0 @@
-Django>=4.2,<5.2
-pythonbible==0.13.1

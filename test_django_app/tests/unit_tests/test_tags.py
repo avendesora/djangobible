@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from django.test import TestCase
-from pythonbible import InvalidVerseError, Version
+from pythonbible import InvalidVerseError
+from pythonbible import Version
 
-from djangobible.templatetags.verse_tags import verse_reference, verse_text
+from djangobible.templatetags.verse_tags import verse_reference
+from djangobible.templatetags.verse_tags import verse_text
 
 
 class TagTestCase(TestCase):

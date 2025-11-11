@@ -1,5 +1,4 @@
-"""
-WSGI config for test_django_project project.
+"""WSGI config for test_django_project project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

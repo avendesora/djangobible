@@ -5,25 +5,26 @@ import os
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from playwright.sync_api import sync_playwright
 
-from test_django_app.tests.factories import TEST_PASSWORD, SuperUserFactory
+from test_django_app.tests.factories import TEST_PASSWORD
+from test_django_app.tests.factories import SuperUserFactory
 
 
 class AdminTestcase(StaticLiveServerTestCase):
     @classmethod
-    def setUpClass(cls: AdminTestcase) -> None:
+    def setUpClass(cls: type[AdminTestcase]) -> None:
         os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
         super().setUpClass()
         cls.playwright = sync_playwright().start()
         cls.browser = cls.playwright.chromium.launch(headless=True)
 
     @classmethod
-    def tearDownClass(cls: AdminTestcase) -> None:
+    def tearDownClass(cls: type[AdminTestcase]) -> None:
         super().tearDownClass()
         cls.browser.close()
         cls.playwright.stop()
 
     def test_object(self: AdminTestcase) -> None:
-        user, page = self._login_to_admin_site()
+        _, page = self._login_to_admin_site()
 
         page.click("text=Test objects")
         page.wait_for_selector("text=Select test object to change")
@@ -35,7 +36,7 @@ class AdminTestcase(StaticLiveServerTestCase):
         page.close()
 
     def test_single_verse_object(self: AdminTestcase) -> None:
-        user, page = self._login_to_admin_site()
+        _, page = self._login_to_admin_site()
 
         page.click("text=Test single verse objects")
         page.wait_for_selector("text=Select test single verse object to change")

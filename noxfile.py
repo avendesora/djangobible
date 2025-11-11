@@ -4,28 +4,28 @@ from __future__ import annotations
 
 import nox
 
+nox.options.default_venv_backend = "uv"
 
-# TODO - add "3.13" to python versions once greenlet is updated
-@nox.session(python=["3.8", "3.9", "3.10", "3.11", "3.12"])
-@nox.parametrize("django", ["4.2"])
+DJANGO_PYTHON_SUPPORT: dict[str, list[str]] = {
+    "4.2": ["3.10", "3.11", "3.12"],
+    "5.0": ["3.10", "3.11", "3.12"],
+    "5.1": ["3.10", "3.11", "3.12", "3.13"],
+    "5.2": ["3.10", "3.11", "3.12", "3.13", "3.14"],
+}
+
+PYTHON_VERSIONS = sorted({py for vals in DJANGO_PYTHON_SUPPORT.values() for py in vals})
+
+
+@nox.session(python=PYTHON_VERSIONS)
+@nox.parametrize("django", list(DJANGO_PYTHON_SUPPORT.keys()))
 def tests(session: nox.Session, django: str) -> None:
-    """Run the test suite."""
-    _run_all_tests_for_environment(session, django)
-    session.notify("tests_django_5")
+    """Session that runs the appropriate Django tests per Python version."""
+    if str(session.python) not in DJANGO_PYTHON_SUPPORT[django]:
+        session.skip(f"Django {django} is not tested on Python {session.python}")
 
-
-# TODO - add "3.13" to python versions once greenlet is updated
-@nox.session(python=["3.10", "3.11", "3.12"])
-@nox.parametrize("django", ["5.0", "5.1a1"])
-def tests_django_5(session: nox.Session, django: str) -> None:
-    """Run the test suite for Django 5.0+ (Python 3.10+)."""
-    _run_all_tests_for_environment(session, django)
-
-
-def _run_all_tests_for_environment(session: nox.Session, django: str) -> None:
     session.install(f"django~={django}")
     session.install("pythonbible")
     session.install("factory-boy")
     session.install("playwright")
-    session.run("playwright", "install")
+    session.run("python", "-m", "playwright", "install")
     session.run("python", "manage.py", "test")
