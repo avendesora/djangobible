@@ -24,6 +24,7 @@ jobs:
     - name: Install Dependencies
       run: |
         uv sync
+        source .venv/bin/activate
         playwright install
     - name: Run Tests
       env:
