@@ -1,20 +1,132 @@
 [build-system]
-requires = ["flit_core >=2,<4"]
-build-backend = "flit_core.buildapi"
+requires = ["uv_build >=0.8.9,<0.9.0"]
+build-backend = "uv_build"
 
-[tool.flit.metadata]
-module = "djangobible"
-author = "Nathan Patton"
-author-email = "npatton@gmail.com"
-home-page = "https://github.com/avendesora/djangobible"
-classifiers = ["License :: OSI Approved :: MIT License"]
+[tool.uv]
+default-groups = ["dev", "docs", "test"]
+
+[tool.uv.build-backend]
+module-root = ""
+module-name = "djangobible"
+
+[project]
+name = "djangobible"
+version = "0.3.0"
 description-file = "README.md"
-requires-python = ">=3.8"
-requires = [
+requires-python = ">=3.10"
+authors = [
+    { name = "Nathan Patton", email = "npatton@gmail.com" }
+]
+readme = "README.md"
+license = "MIT"
+classifiers = [
+    "Framework :: Django",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "License :: OSI Approved :: MIT License"
+]
+urls = { Source = "https://github.com/avendesora/djangobible" }
+dependencies = [
     "Django>=4.2.0",
-    "pythonbible==0.13.1",
+    "pythonbible==0.14.0",
 ]
 
-[tool.isort]
-profile = "black"
-add_imports = "from __future__ import annotations"
+[dependency-groups]
+dev = [
+    "pre-commit",
+]
+docs = [
+    "furo",
+    "jupyter",
+    "sphinx",
+    "sphinx-copybutton",
+    "sphinx-toolbox",
+]
+test = [
+    "coverage",
+    "factory-boy",
+    "nox[uv]",
+    "playwright",
+]
+
+[tool.ruff.lint]
+select = [
+    "A",
+    "ANN",
+    "ARG",
+    "B",
+    "BLE",
+    "COM",
+    "C4",
+    "C90",
+    "D",
+    "DTZ",
+    "E",
+    "EM",
+    "ERA",
+    "EXE",
+    "F",
+    "FBT",
+    "G",
+    "I",
+    "ICN",
+    "INP",
+    "ISC",
+    "N",
+    "NPY",
+    "PD",
+    "PGH",
+    "PIE",
+    "PL",
+    "PT",
+    "PTH",
+    "PYI",
+    "Q",
+    "RET",
+    "RSE",
+    "RUF",
+    "S",
+    "SIM",
+    "SLF",
+    "TCH",
+    "TID",
+    "TRY",
+    "T10",
+    "T20",
+    "W",
+]
+ignore = [
+    "COM812",  # conflicts with formatter
+    "D100",
+    "D101",
+    "D102",
+    "D103",
+    "D104",
+    "D205",
+    "D203",
+    "D213",
+    "ISC001",  # conflicts with formatter
+]
+
+[tool.ruff.lint.per-file-ignores]
+"djangobible/__init__.py" = ["F403"]
+"djangobible/fields.py" = ["ANN401", "ARG002"]
+"djangobible/models.py" = ["FBT001", "FBT002"]
+"djangobible/templatetags/verse_tags.py" = ["ANN401"]
+"test_django_app/tests/*.py" = ["ANN001", "ANN002", "ANN003", "ANN206", "ARG003", "D100", "D103", "D104", "D106", "FBT003", "PLR2004", "PT009", "PT027", "S101", "S105", "S311", "TRY301"]
+"test_django_project/settings.py" = ["E501", "S105"]
+
+[tool.ruff.lint.isort]
+force-single-line = true

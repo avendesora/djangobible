@@ -1,0 +1,46 @@
+name: pypi-publish
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish-to-pypi:
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Ensure Python (uses your .python-version / requires-python)
+        run: uv python install
+
+      - name: Verify version matches release tag
+        shell: bash
+        run: |
+          # On release event, the tag name is available at github.event.release.tag_name
+          TAG_NAME="${{ github.event.release.tag_name }}"
+          VERSION="$(uv version --short)"
+          echo "tag=${TAG_NAME}  pyproject=${VERSION}"
+          TAG_STRIPPED="${TAG_NAME#v}"
+          if [ "${VERSION}" != "${TAG_STRIPPED}" ]; then
+            echo "::error::Version mismatch detected!"
+            echo "Release tag: ${TAG_NAME}"
+            echo "pyproject.toml version: ${VERSION}"
+            exit 1
+          fi
+
+      - name: Build distributions
+        run: uv build --no-sources
+
+      - name: Publish to PyPI
+        run: uv publish

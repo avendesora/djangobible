@@ -6,7 +6,8 @@ import factory
 from django.contrib.auth import get_user_model
 from pythonbible.verses import VERSE_IDS
 
-from test_django_app.models import TestObject, TestSingleVerseObject
+from test_django_app.models import TestObject
+from test_django_app.models import TestSingleVerseObject
 
 TEST_USERNAME = "admin"
 TEST_EMAIL = "admin@python.bible"
