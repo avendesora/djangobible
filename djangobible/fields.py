@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import Any
 from typing import Callable
 
 import pythonbible as bible
@@ -49,17 +50,17 @@ class VerseField(models.Field):
     def from_db_value(
         self: VerseField,
         value: int | str | None,
-        expression: str | None,
-        connection: object | None,
+        expression: Any,
+        connection: Any,
     ) -> str | None:
         """Convert the value from the DB."""
         return self.to_python(value)
 
     def formfield(
         self: VerseField,
-        form_class: str | None = None,
-        choices_form_class: str | None = None,
-        **kwargs: dict | None,
+        form_class: type[forms.Field] | None = None,
+        choices_form_class: type[forms.Field] | None = None,
+        **kwargs: Any,
     ) -> forms.Field:
         """Make sure the form field is a CharField."""
         return super().formfield(
@@ -72,7 +73,7 @@ class VerseField(models.Field):
     def get_db_prep_save(
         self: VerseField,
         value: int | str | None,
-        **kwargs: dict | None,
+        **kwargs: Any,
     ) -> int | None:
         """Validate and convert the value to a verse id int before saving to the DB."""
         if not value:

@@ -122,8 +122,9 @@ ignore = [
 
 [tool.ruff.lint.per-file-ignores]
 "djangobible/__init__.py" = ["F403"]
-"djangobible/fields.py" = ["ARG002"]
+"djangobible/fields.py" = ["ANN401", "ARG002"]
 "djangobible/models.py" = ["FBT001", "FBT002"]
+"djangobible/templatetags/verse_tags.py" = ["ANN401"]
 "test_django_app/tests/*.py" = ["ANN001", "ANN002", "ANN003", "ANN206", "ARG003", "D100", "D103", "D104", "D106", "FBT003", "PLR2004", "PT009", "PT027", "S101", "S105", "S311", "TRY301"]
 "test_django_project/settings.py" = ["E501", "S105"]
 

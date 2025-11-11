@@ -20,7 +20,7 @@ PYTHON_VERSIONS = sorted({py for vals in DJANGO_PYTHON_SUPPORT.values() for py i
 @nox.parametrize("django", list(DJANGO_PYTHON_SUPPORT.keys()))
 def tests(session: nox.Session, django: str) -> None:
     """Session that runs the appropriate Django tests per Python version."""
-    if session.python not in DJANGO_PYTHON_SUPPORT[django]:
+    if str(session.python) not in DJANGO_PYTHON_SUPPORT[django]:
         session.skip(f"Django {django} is not tested on Python {session.python}")
 
     session.install(f"django~={django}")

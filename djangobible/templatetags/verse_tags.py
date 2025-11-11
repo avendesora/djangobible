@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from contextlib import suppress
+from typing import Any
 
 import pythonbible as bible
 from django import template
@@ -11,7 +12,7 @@ register = template.Library()
 
 
 @register.simple_tag
-def verse_reference(verse_id: int, **kwargs: dict) -> str:
+def verse_reference(verse_id: int, **kwargs: Any) -> str:
     """For a given verse id return the formatted scripture reference string.
 
     :param verse_id:
@@ -31,7 +32,7 @@ def verse_reference(verse_id: int, **kwargs: dict) -> str:
 
 
 @register.simple_tag
-def verse_text(verse_id: int, **kwargs: dict) -> str:
+def verse_text(verse_id: int, **kwargs: Any) -> str:
     """For a given verse id and version, return the verse text string.
 
     :param verse_id:
