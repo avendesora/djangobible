@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Callable
+from typing import Callable
 
 import pythonbible as bible
 from django import forms
@@ -24,7 +24,8 @@ class VerseField(models.Field):
                 bible.get_references(value),
             )[0]
         elif isinstance(value, int) and not bible.is_valid_verse_id(value):
-            raise ValidationError(f"{value} is not a valid verse id.")
+            error_message = f"{value} is not a valid verse id."
+            raise ValidationError(error_message)
 
         return super().get_prep_value(value)
 
@@ -48,17 +49,17 @@ class VerseField(models.Field):
     def from_db_value(
         self: VerseField,
         value: int | str | None,
-        expression: Any,
-        connection: Any,
+        expression: str | None,
+        connection: object | None,
     ) -> str | None:
         """Convert the value from the DB."""
         return self.to_python(value)
 
     def formfield(
         self: VerseField,
-        form_class: Any = None,
-        choices_form_class: Any = None,
-        **kwargs: Any,
+        form_class: str | None = None,
+        choices_form_class: str | None = None,
+        **kwargs: dict | None,
     ) -> forms.Field:
         """Make sure the form field is a CharField."""
         return super().formfield(
@@ -70,8 +71,8 @@ class VerseField(models.Field):
 
     def get_db_prep_save(
         self: VerseField,
-        value: Any,
-        **kwargs: Any,
+        value: int | str | None,
+        **kwargs: dict | None,
     ) -> int | None:
         """Validate and convert the value to a verse id int before saving to the DB."""
         if not value:
@@ -83,12 +84,12 @@ class VerseField(models.Field):
             if verse_ids := bible.convert_references_to_verse_ids(references):
                 value = verse_ids[0]
             else:
-                raise ValidationError(
-                    f"{value} does not contain a valid Scripture reference.",
-                )
+                error_message = f"{value} does not contain a valid Scripture reference."
+                raise ValidationError(error_message)
 
         if not bible.is_valid_verse_id(value):
-            raise ValidationError(f"{value} is not a valid verse id.")
+            error_message = f"{value} is not a valid verse id."
+            raise ValidationError(error_message)
 
         return int(value)
 

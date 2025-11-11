@@ -2,11 +2,21 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 from django.shortcuts import render
 
+if TYPE_CHECKING:
+    from django.http import HttpRequest
+    from django.http import HttpResponse
 
-def verse_tag_views(request):
-    """View for testing verse tags."""
+
+def verse_tag_views(request: HttpRequest) -> HttpResponse:
+    """View for testing verse tags.
+
+    :param request: The HTTP request.
+    :return: The HTTP response.
+    """
     view_data = {
         "verse_id": 1001001,
         "version": "KJV",

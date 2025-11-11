@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Sized
 
 import pythonbible as bible
-from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.fields import GenericRelation
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
@@ -29,8 +30,8 @@ class VerseRelation(models.Model):
         self: VerseRelation,
         force_insert: bool = False,
         force_update: bool = False,
-        using: Any = None,
-        update_fields: Any = None,
+        using: str | None = None,
+        update_fields: list | None = None,
     ) -> None:
         """Save the instance to the DB."""
         if not bible.is_valid_verse_id(self.verse):
@@ -45,7 +46,7 @@ class ScriptureIndexedModelManager(models.Manager):
     def filter_by_verse_ids(
         self: ScriptureIndexedModelManager,
         verse_ids: list[int] | None,
-    ) -> Any:
+    ) -> Sized:
         """Return the Query Set for the objects related to the given verse ids."""
         content_type = ContentType.objects.get_for_model(self.model)
         verse_relations = VerseRelation.objects.filter(
