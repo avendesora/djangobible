@@ -40,7 +40,7 @@ classifiers = [
 urls = { Source = "https://github.com/avendesora/djangobible" }
 dependencies = [
     "Django>=4.2.0",
-    "pythonbible==0.14.0",
+    "pythonbible==0.15.5",
 ]
 
 [dependency-groups]
